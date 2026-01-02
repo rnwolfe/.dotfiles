@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+os="{{ .chezmoi.os }}"
+
+if [[ "$os" == "linux" ]]; then
+  if command -v apt-get >/dev/null 2>&1; then
+    sudo apt-get update -y
+    sudo apt-get install -y \
+      git curl ca-certificates unzip tar \
+      zsh jq ripgrep fzf \
+      build-essential pkg-config \
+      libssl-dev libcurl4-openssl-dev libxml2-dev
+  else
+    echo "No apt-get found; linux package install not implemented for this distro."
+  fi
+
+  # LastPass CLI: try apt, then build from source as fallback.
+  if ! command -v lpass >/dev/null 2>&1; then
+    sudo apt-get install -y lastpass-cli || true
+  fi
+  if ! command -v lpass >/dev/null 2>&1; then
+    tmp="$(mktemp -d)"
+    git clone --depth=1 https://github.com/lastpass/lastpass-cli.git "$tmp/lastpass-cli"
+    (cd "$tmp/lastpass-cli" && make && sudo make install)
+    rm -rf "$tmp"
+  fi
+
+elif [[ "$os" == "darwin" ]]; then
+  # Homebrew
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "Homebrew not found. Install it first (https://brew.sh) then re-run chezmoi apply."
+    exit 0
+  fi
+
+  brew update
+  brew install \
+    git zsh jq ripgrep fzf \
+    lastpass-cli
+else
+  echo "Unsupported OS: $os"
+fi

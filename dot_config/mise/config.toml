@@ -1,0 +1,11 @@
+# Managed by chezmoi
+# Tools installed by `mise install` (run by chezmoi script).
+[tools]
+node = "lts"
+pnpm = "latest"
+kubectl = "latest"
+k9s = "latest"
+
+# Add more as needed, e.g.
+# go = "1.23"
+# python = "3.12"

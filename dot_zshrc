@@ -1,0 +1,19 @@
+# Managed by chezmoi
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+
+# Ensure ~/.local/bin is on PATH early
+export PATH="$HOME/.local/bin:$PATH"
+
+# Load modular zsh config
+ZSH_DIR="$XDG_CONFIG_HOME/zsh"
+for f in \
+  "$ZSH_DIR/00-env.zsh" \
+  "$ZSH_DIR/10-mise.zsh" \
+  "$ZSH_DIR/20-aliases.zsh" \
+  "$ZSH_DIR/30-plugins.zsh" \
+  "$ZSH_DIR/90-secrets.zsh" \
+  "$ZSH_DIR/99-work.zsh"
+do
+  [ -f "$f" ] && source "$f"
+done
