@@ -63,7 +63,7 @@ Common places to add or change things:
 - Zsh plugins: edit `dot_config/zsh/30-plugins.zsh`.
 - Aliases: edit `dot_config/zsh/20-aliases.zsh`.
 - Custom scripts: add new scripts under `.chezmoiscripts/` (run_once/run_onchange/run_before/run_after prefixes).
-- Manual installs (npm/go/curl): edit `.chezmoiscripts/run_onchange_after_30_manual.sh.tmpl` and add idempotent commands. Go installs are routed to `~/.local/bin` via `GOBIN` so they land on PATH.
+- Manual installs (npm/go/curl): edit `.chezmoiscripts/run_onchange_after_30_manual.sh.tmpl` and add idempotent commands. Go installs are routed to `~/.local/bin` via `GOBIN` so they land on PATH (mise defaults `GOBIN` inside its install dir, which is not where you want tools to live).
 
 After changes:
 
