@@ -1,7 +1,7 @@
 {{- $name := promptStringOnce . "name" "Full name" -}}
 {{- $email := promptStringOnce . "email" "Git email" -}}
 {{- $lastpassLoginEmail := promptStringOnce . "lastpassLoginEmail" "LastPass login email (for hints)" -}}
-{{- $lastpassLLMItem := promptStringOnce . "lastpassLLMItem" "LastPass item NAME/ID for LLM keys (e.g. 'LLM')" -}}
+{{- $lastpassLLMItem := promptStringOnce . "lastpassLLMItem" "LastPass item NAME/ID for LLM keys" "LLM" -}}
 
 [data]
 name = {{ $name | quote }}
