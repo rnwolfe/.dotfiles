@@ -4,9 +4,18 @@ set -euo pipefail
 os="{{ .chezmoi.os }}"
 
 if [[ "$os" == "linux" ]]; then
+  sudo_cmd="sudo"
+  if ! command -v sudo >/dev/null 2>&1; then
+    sudo_cmd=""
+  fi
+  if [[ -z "$sudo_cmd" ]] && [[ "${EUID:-$(id -u)}" -ne 0 ]]; then
+    echo "sudo not found and not running as root; cannot install packages."
+    exit 1
+  fi
+
   if command -v apt-get >/dev/null 2>&1; then
-    sudo apt-get update -y
-    sudo apt-get install -y \
+    ${sudo_cmd} apt-get update -y
+    ${sudo_cmd} apt-get install -y \
       git curl ca-certificates unzip tar \
       zsh jq ripgrep fzf \
       build-essential pkg-config \
@@ -17,12 +26,12 @@ if [[ "$os" == "linux" ]]; then
 
   # LastPass CLI: try apt, then build from source as fallback.
   if ! command -v lpass >/dev/null 2>&1; then
-    sudo apt-get install -y lastpass-cli || true
+    ${sudo_cmd} apt-get install -y lastpass-cli || true
   fi
   if ! command -v lpass >/dev/null 2>&1; then
     tmp="$(mktemp -d)"
     git clone --depth=1 https://github.com/lastpass/lastpass-cli.git "$tmp/lastpass-cli"
-    (cd "$tmp/lastpass-cli" && make && sudo make install)
+    (cd "$tmp/lastpass-cli" && make && ${sudo_cmd} make install)
     rm -rf "$tmp"
   fi
 
