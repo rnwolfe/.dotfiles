@@ -35,6 +35,15 @@ if [[ "$os" == "linux" ]]; then
     rm -rf "$tmp"
   fi
 
+  # Try to log in so secrets can be templated during init.
+  if command -v lpass >/dev/null 2>&1; then
+    if ! lpass status >/dev/null 2>&1; then
+      if [[ -n "{{ .lastpassLoginEmail }}" ]]; then
+        lpass login --trust "{{ .lastpassLoginEmail }}" || true
+      fi
+    fi
+  fi
+
 elif [[ "$os" == "darwin" ]]; then
   # Homebrew
   if ! command -v brew >/dev/null 2>&1; then
