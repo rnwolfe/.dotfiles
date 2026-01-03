@@ -8,8 +8,19 @@ Base dotfiles + packages + mise toolchain. Applies everywhere.
 
 Use the official chezmoi installer and run init+apply:
 
+### From scratch (fresh OS)
+
+If `curl` is missing:
+
 ```sh
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply <YOUR_GIT_REPO_URL>
+sudo apt update
+sudo apt install -y curl git
+```
+
+Then run the installer:
+
+```sh
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply https://github.com/rnwolfe/.dotfiles.git
 ```
 
 `chezmoi init` can generate your `~/.config/chezmoi/chezmoi.toml` from `.chezmoi.toml.tmpl`, and `--apply` runs `chezmoi apply`.
@@ -21,7 +32,7 @@ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply <YOUR_GIT_REPO_URL>
 After personal is applied:
 
 ```sh
-chezmoi -S ~/.local/share/chezmoi-work init --apply <YOUR_WORK_REPO_URL>
+chezmoi -S ~/.local/share/chezmoi-work init --apply https://github.com/rnwolfe/.dotfiles.git
 ```
 
 `-S` switches the source dir so you can keep personal and work as separate repos.
