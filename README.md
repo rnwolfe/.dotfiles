@@ -25,7 +25,7 @@ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply https://github.com/
 
 `chezmoi init` can generate your `~/.config/chezmoi/chezmoi.toml` from `.chezmoi.toml.tmpl`, and `--apply` runs `chezmoi apply`.
 
-**Follow prompts (name/email + LastPass item name for LLM keys).***
+**Follow prompts (name/email + LastPass login email).***
 
 ## Apply work overlay (optional)
 
