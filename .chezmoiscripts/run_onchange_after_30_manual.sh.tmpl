@@ -6,9 +6,9 @@ set -euo pipefail
 
 # Example (npm):
 if command -v mise >/dev/null 2>&1; then
-  mise exec -- npm install -g @openai/codex @anthropic-ai/claude @google/gemini-cli
+  mise exec -- npm install -g @openai/codex @google/gemini-cli
 elif command -v npm >/dev/null 2>&1; then
-  npm install -g @openai/codex @anthropic-ai/claude @google/gemini-cli
+  npm install -g @openai/codex @google/gemini-cli
 fi
 
 # Example (go):
@@ -19,4 +19,4 @@ elif command -v go >/dev/null 2>&1; then
 fi
 
 # Example (curl | sh):
-# curl -fsSL https://example.com/install.sh | sh
+curl -fsSL https://claude.ai/install.sh | bash
