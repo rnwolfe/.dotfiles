@@ -31,6 +31,15 @@ if [[ "$os" == "linux" ]]; then
       ${sudo_cmd} apt-get update -y
       ${sudo_cmd} apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     fi
+
+    if command -v docker >/dev/null 2>&1; then
+      ${sudo_cmd} groupadd docker >/dev/null 2>&1 || true
+      if [[ -n "${SUDO_USER:-}" ]]; then
+        ${sudo_cmd} usermod -aG docker "$SUDO_USER" || true
+      else
+        ${sudo_cmd} usermod -aG docker "$(id -un)" || true
+      fi
+    fi
   else
     echo "No apt-get found; linux package install not implemented for this distro."
   fi
