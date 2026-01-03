@@ -3,7 +3,7 @@
 [tools]
 node = "lts"
 pnpm = "latest"
-go = "1.23"
+go = "1.25"
 kubectl = "latest"
 k9s = "latest"
 
