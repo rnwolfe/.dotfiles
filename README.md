@@ -64,6 +64,7 @@ Common places to add or change things:
 - Aliases: edit `dot_config/zsh/20-aliases.zsh`.
 - Custom scripts: add new scripts under `.chezmoiscripts/` (run_once/run_onchange/run_before/run_after prefixes).
 - Manual installs (npm/go/curl): edit `.chezmoiscripts/run_onchange_after_30_manual.sh.tmpl` and add idempotent commands. Go installs are routed to `~/.local/bin` via `GOBIN` so they land on PATH (mise defaults `GOBIN` inside its install dir, which is not where you want tools to live).
+- Persist helpers: use `persist-alias`, `persist-env`, and `persist-path` in zsh to write changes into the repo, apply, and optionally push. Add `--work` to target the work overlay.
 
 After changes:
 
