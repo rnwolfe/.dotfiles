@@ -53,6 +53,23 @@ chezmoi cd
 
 `chezmoi edit --apply` is the fast path for tight iteration.
 
+## Extend and customize
+
+Common places to add or change things:
+
+- LastPass keys: update the `keys=(...)` list in `dot_config/zsh/private_90-secrets.zsh.tmpl`. Create matching LastPass items with the key name and store the secret in the note field.
+- Packages (apt): edit `.chezmoiscripts/run_onchange_before_00_packages.sh.tmpl`.
+- Mise toolchain: edit `dot_config/mise/config.toml`.
+- Zsh plugins: edit `dot_config/zsh/30-plugins.zsh`.
+- Aliases: edit `dot_config/zsh/20-aliases.zsh`.
+- Custom scripts: add new scripts under `.chezmoiscripts/` (run_once/run_onchange/run_before/run_after prefixes).
+
+After changes:
+
+```sh
+chezmoi apply
+```
+
 ## Reset loop (fast “clean slate” testing)
 
 Remove chezmoi state/config/source (leaves target files in place):
