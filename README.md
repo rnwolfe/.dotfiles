@@ -58,7 +58,7 @@ chezmoi cd
 Common places to add or change things:
 
 - LastPass keys: update the `keys=(...)` list in `dot_config/zsh/private_90-secrets.zsh.tmpl`. Create matching LastPass items with the key name and store the secret in the note field.
-- Packages (apt): edit `.chezmoiscripts/run_onchange_before_00_packages.sh.tmpl`.
+- Packages (apt): edit `.chezmoiscripts/run_onchange_before_00_packages.sh.tmpl` (includes Docker via the official apt repo).
 - Mise toolchain: edit `dot_config/mise/config.toml`.
 - Zsh plugins: edit `dot_config/zsh/30-plugins.zsh`.
 - Aliases: edit `dot_config/zsh/20-aliases.zsh`.

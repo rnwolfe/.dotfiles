@@ -20,6 +20,17 @@ if [[ "$os" == "linux" ]]; then
       zsh jq ripgrep fzf \
       build-essential pkg-config \
       libssl-dev libcurl4-openssl-dev libxml2-dev
+
+    # Docker (official apt repo)
+    if ! command -v docker >/dev/null 2>&1; then
+      ${sudo_cmd} install -m 0755 -d /etc/apt/keyrings
+      ${sudo_cmd} curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+      ${sudo_cmd} chmod a+r /etc/apt/keyrings/docker.asc
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" \
+        | ${sudo_cmd} tee /etc/apt/sources.list.d/docker.list >/dev/null
+      ${sudo_cmd} apt-get update -y
+      ${sudo_cmd} apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    fi
   else
     echo "No apt-get found; linux package install not implemented for this distro."
   fi
