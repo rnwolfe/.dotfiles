@@ -4,6 +4,7 @@ set -euo pipefail
 if command -v zsh >/dev/null 2>&1; then
   zsh_path="$(command -v zsh)"
   if [[ "${SHELL:-}" != "$zsh_path" ]]; then
-    chsh -s "$zsh_path" "$USER" || true
+    target_user="${USER:-$(id -un)}"
+    chsh -s "$zsh_path" "$target_user" || true
   fi
 fi
