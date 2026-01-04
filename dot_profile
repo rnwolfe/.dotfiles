@@ -1,0 +1,3 @@
+# Managed by chezmoi
+# Login shells (bash/sh) PATH bootstrap.
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"

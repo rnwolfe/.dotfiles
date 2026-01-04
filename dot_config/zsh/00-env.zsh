@@ -3,4 +3,4 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt SHARE_HISTORY
 export EDITOR="${EDITOR:-nvim}"
 export PAGER="${PAGER:-less}"
-export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
