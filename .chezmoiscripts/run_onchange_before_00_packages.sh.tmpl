@@ -20,13 +20,15 @@ if [[ "$os" == "linux" ]]; then
       zsh jq ripgrep fzf tmux \
       build-essential pkg-config \
       libssl-dev libcurl4-openssl-dev libxml2-dev \
-      xclip fd-find software-properties-common
+      xclip fd-find
 
-    # Neovim (latest stable from PPA for AstroNvim v0.10+ requirement)
-    if ! command -v nvim >/dev/null 2>&1; then
-      ${sudo_cmd} add-apt-repository -y ppa:neovim-ppa/stable
-      ${sudo_cmd} apt-get update -y
-      ${sudo_cmd} apt-get install -y neovim
+    # Neovim (latest stable from GitHub releases for AstroNvim v0.10+ requirement)
+    if ! command -v nvim >/dev/null 2>&1 || [[ "$(nvim --version | head -1 | grep -oP 'v\K[0-9]+')" -lt 10 ]]; then
+      curl -Lo /tmp/nvim.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+      ${sudo_cmd} rm -rf /opt/nvim
+      ${sudo_cmd} tar -C /opt -xzf /tmp/nvim.tar.gz
+      ${sudo_cmd} ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+      rm -f /tmp/nvim.tar.gz
     fi
 
     # AstroNvim optional dependencies (lazygit, gdu, bottom)
