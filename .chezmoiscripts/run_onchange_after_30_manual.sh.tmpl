@@ -31,7 +31,7 @@ fi
 # oh-my-opencode-slim (agent orchestration plugin for OpenCode)
 # Non-interactive install with recommended settings
 if command -v mise >/dev/null 2>&1; then
-  mise exec -- bunx oh-my-opencode-slim install --no-tui --antigravity=yes --openai=yes --cerebras=no || true
+  mise exec -- bunx oh-my-opencode-slim install --no-tui --antigravity=yes --openai=yes --cerebras=no --tmux=yes || true
 elif command -v bun >/dev/null 2>&1; then
-  bunx oh-my-opencode-slim install --no-tui --antigravity=yes --openai=yes --cerebras=no || true
+  bunx oh-my-opencode-slim install --no-tui --antigravity=yes --openai=yes --cerebras=no --tmux=yes || true
 fi
