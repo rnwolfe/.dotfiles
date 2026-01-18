@@ -19,7 +19,39 @@ if [[ "$os" == "linux" ]]; then
       git curl ca-certificates unzip tar \
       zsh jq ripgrep fzf tmux \
       build-essential pkg-config \
-      libssl-dev libcurl4-openssl-dev libxml2-dev
+      libssl-dev libcurl4-openssl-dev libxml2-dev \
+      xclip fd-find
+
+    # Neovim (latest stable from PPA for AstroNvim v0.10+ requirement)
+    if ! command -v nvim >/dev/null 2>&1; then
+      ${sudo_cmd} add-apt-repository -y ppa:neovim-ppa/stable
+      ${sudo_cmd} apt-get update -y
+      ${sudo_cmd} apt-get install -y neovim
+    fi
+
+    # AstroNvim optional dependencies (lazygit, gdu, bottom)
+    # lazygit
+    if ! command -v lazygit >/dev/null 2>&1; then
+      LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+      curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+      tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
+      ${sudo_cmd} install /tmp/lazygit /usr/local/bin
+      rm -f /tmp/lazygit /tmp/lazygit.tar.gz
+    fi
+
+    # gdu (disk usage analyzer)
+    if ! command -v gdu >/dev/null 2>&1; then
+      curl -L https://github.com/dundee/gdu/releases/latest/download/gdu_linux_amd64.tgz | tar xz -C /tmp
+      ${sudo_cmd} install /tmp/gdu_linux_amd64 /usr/local/bin/gdu
+      rm -f /tmp/gdu_linux_amd64
+    fi
+
+    # bottom (process viewer)
+    if ! command -v btm >/dev/null 2>&1; then
+      curl -Lo /tmp/bottom.deb https://github.com/ClementTsang/bottom/releases/latest/download/bottom_amd64.deb
+      ${sudo_cmd} dpkg -i /tmp/bottom.deb || ${sudo_cmd} apt-get install -f -y
+      rm -f /tmp/bottom.deb
+    fi
 
     # Docker (official apt repo)
     if ! command -v docker >/dev/null 2>&1; then
@@ -84,8 +116,9 @@ elif [[ "$os" == "darwin" ]]; then
 
   brew update
   brew install \
-    git zsh jq ripgrep fzf \
-    lastpass-cli gh
+    git zsh jq ripgrep fzf fd \
+    lastpass-cli gh \
+    neovim lazygit gdu bottom
 else
   echo "Unsupported OS: $os"
 fi

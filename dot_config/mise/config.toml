@@ -6,7 +6,8 @@ pnpm = "latest"
 go = "1.25"
 kubectl = "latest"
 k9s = "latest"
+bun = "latest"
+tree-sitter-cli = "latest"
 
 # Add more as needed, e.g.
-# go = "1.23"
 # python = "3.12"

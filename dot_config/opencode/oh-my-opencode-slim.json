@@ -1,0 +1,12 @@
+{
+  "tmux": {
+    "enabled": true,
+    "layout": "main-vertical",
+    "main_pane_size": 60
+  },
+  "disabled_agents": [],
+  "agents": {
+    "oracle": { "variant": "high" },
+    "explore": { "variant": "low" }
+  }
+}

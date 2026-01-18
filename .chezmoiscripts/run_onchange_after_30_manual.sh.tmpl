@@ -20,3 +20,18 @@ fi
 
 # Example (curl | sh):
 curl -fsSL https://claude.ai/install.sh | bash
+
+# OpenCode (AI coding assistant)
+if command -v mise >/dev/null 2>&1; then
+  mise exec -- bun install -g opencode-ai
+elif command -v bun >/dev/null 2>&1; then
+  bun install -g opencode-ai
+fi
+
+# oh-my-opencode-slim (agent orchestration plugin for OpenCode)
+# Non-interactive install with recommended settings
+if command -v mise >/dev/null 2>&1; then
+  mise exec -- bunx oh-my-opencode-slim install --no-tui --antigravity=yes --openai=yes --cerebras=no || true
+elif command -v bun >/dev/null 2>&1; then
+  bunx oh-my-opencode-slim install --no-tui --antigravity=yes --openai=yes --cerebras=no || true
+fi
