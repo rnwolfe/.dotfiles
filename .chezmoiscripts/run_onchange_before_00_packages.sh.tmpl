@@ -20,7 +20,7 @@ if [[ "$os" == "linux" ]]; then
       zsh jq ripgrep fzf tmux \
       build-essential pkg-config \
       libssl-dev libcurl4-openssl-dev libxml2-dev \
-      xclip fd-find
+      xclip fd-find software-properties-common
 
     # Neovim (latest stable from PPA for AstroNvim v0.10+ requirement)
     if ! command -v nvim >/dev/null 2>&1; then
