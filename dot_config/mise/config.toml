@@ -7,7 +7,7 @@ go = "1.25"
 kubectl = "latest"
 k9s = "latest"
 bun = "latest"
-tree-sitter-cli = "latest"
+tree-sitter = "latest"
 
 # Add more as needed, e.g.
 # python = "3.12"
