@@ -20,7 +20,9 @@ if [[ "$os" == "linux" ]]; then
       zsh jq ripgrep fzf tmux \
       build-essential pkg-config \
       libssl-dev libcurl4-openssl-dev libxml2-dev \
-      xclip fd-find
+      xclip fd-find \
+      zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
+      libncursesw5-dev xz-utils tk-dev libxmlsec1-dev libffi-dev liblzma-dev
 
     # Neovim (latest stable from GitHub releases for AstroNvim v0.10+ requirement)
     if ! command -v nvim >/dev/null 2>&1 || [[ "$(nvim --version | head -1 | grep -oP 'v\K[0-9]+')" -lt 10 ]]; then
@@ -85,6 +87,11 @@ if [[ "$os" == "linux" ]]; then
       ${sudo_cmd} apt-get update -y
       ${sudo_cmd} apt-get install -y gh
     fi
+
+    # pyenv
+    if [[ ! -d "${HOME}/.pyenv" ]]; then
+      curl https://pyenv.run | bash
+    fi
   else
     echo "No apt-get found; linux package install not implemented for this distro."
   fi
@@ -119,7 +126,7 @@ elif [[ "$os" == "darwin" ]]; then
   brew update
   brew install \
     git zsh jq ripgrep fzf fd \
-    lastpass-cli gh \
+    lastpass-cli gh pyenv \
     neovim lazygit gdu bottom
 else
   echo "Unsupported OS: $os"
