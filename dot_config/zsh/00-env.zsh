@@ -9,3 +9,8 @@ export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/go/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 command -v pyenv >/dev/null && eval "$(pyenv init -)"
+
+# iterm2
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+## shell integration should come after any ITERM vars
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

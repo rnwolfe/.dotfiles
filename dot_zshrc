@@ -5,6 +5,9 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 # Ensure ~/.local/bin is on PATH early
 export PATH="$HOME/.local/bin:$PATH"
 
+# Ensure compatibility with iterm2 and tmux
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+
 # Powerlevel10k instant prompt (keep at top, after PATH)
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
