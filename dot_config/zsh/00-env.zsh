@@ -5,6 +5,9 @@ export EDITOR="${EDITOR:-nvim}"
 export PAGER="${PAGER:-less}"
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/go/bin:$PATH"
 
+# opencode
+export OPENCODE_DISABLE_FILETIME_CHECK=true
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
