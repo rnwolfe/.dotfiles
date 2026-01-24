@@ -35,3 +35,10 @@ if command -v mise >/dev/null 2>&1; then
 elif command -v bun >/dev/null 2>&1; then
   bunx oh-my-opencode-slim install --no-tui --antigravity=yes --openai=yes --cerebras=no --tmux=yes || true
 fi
+
+
+if command -v mise >/dev/null 2>&1; then
+  mise exec -- npm install -g vercel
+elif command -v npm >/dev/null 2>&1; then
+  npm install -g vercel
+fi
