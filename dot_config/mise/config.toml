@@ -8,6 +8,7 @@ kubectl = "latest"
 k9s = "latest"
 bun = "latest"
 tree-sitter = "latest"
+vercel = "latest"
 
 # Add more as needed, e.g.
 # python = "3.12"
