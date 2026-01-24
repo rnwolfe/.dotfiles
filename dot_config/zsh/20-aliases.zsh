@@ -3,6 +3,9 @@ alias ll='ls -lah'
 alias gs='git status'
 alias gd='git diff'
 alias v='nvim'
+alias vi='nvim'
+alias oc="opencode"
+alias occ="opencode -c"
 
 _persist__commit_and_push() {
   local repo_dir="$1"
