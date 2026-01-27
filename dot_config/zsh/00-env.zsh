@@ -17,3 +17,4 @@ command -v pyenv >/dev/null && eval "$(pyenv init -)"
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 ## shell integration should come after any ITERM vars
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
