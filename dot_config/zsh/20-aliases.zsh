@@ -99,3 +99,4 @@ persist-path() {
   _persist__commit_and_push "$repo_dir" "chore: add path $path_entry"
 }
 alias cb='clawdbot'
+alias s='source ~/.zshrc'
