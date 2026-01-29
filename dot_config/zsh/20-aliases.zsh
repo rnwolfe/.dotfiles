@@ -98,3 +98,4 @@ persist-path() {
   _persist__apply "$([[ "$target" == "work" ]] && echo --work)"
   _persist__commit_and_push "$repo_dir" "chore: add path $path_entry"
 }
+alias cb='clawdbot'
