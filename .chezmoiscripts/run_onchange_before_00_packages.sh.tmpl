@@ -77,6 +77,16 @@ if [[ "$os" == "linux" ]]; then
       fi
     fi
 
+    # ngrok
+    if ! command -v ngrok >/dev/null 2>&1; then
+      curl -fsSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+        | ${sudo_cmd} tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+      echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+        | ${sudo_cmd} tee /etc/apt/sources.list.d/ngrok.list >/dev/null
+      ${sudo_cmd} apt-get update -y
+      ${sudo_cmd} apt-get install -y ngrok
+    fi
+
     # GitHub CLI
     if ! command -v gh >/dev/null 2>&1; then
       ${sudo_cmd} install -m 0755 -d /etc/apt/keyrings
@@ -127,7 +137,7 @@ elif [[ "$os" == "darwin" ]]; then
   brew install \
     git zsh jq ripgrep fzf fd \
     lastpass-cli gh pyenv \
-    neovim lazygit gdu bottom
+    neovim lazygit gdu bottom ngrok
 else
   echo "Unsupported OS: $os"
 fi
