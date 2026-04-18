@@ -8,6 +8,12 @@ export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/go/bin:$PATH"
 # opencode
 export OPENCODE_DISABLE_FILETIME_CHECK=true
 
+# API keys loaded from ~/ key files
+[[ -f "$HOME/.gemini_api_key" ]]     && export GEMINI_API_KEY="$(cat "$HOME/.gemini_api_key")"     GOOGLE_API_KEY="$GEMINI_API_KEY"
+[[ -f "$HOME/.anthropic_api_key" ]]  && export ANTHROPIC_API_KEY="$(cat "$HOME/.anthropic_api_key")"
+[[ -f "$HOME/.openai_api_key" ]]     && export OPENAI_API_KEY="$(cat "$HOME/.openai_api_key")"
+[[ -f "$HOME/.openrouter_api_key" ]] && export OPENROUTER_API_KEY="$(cat "$HOME/.openrouter_api_key")"
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
