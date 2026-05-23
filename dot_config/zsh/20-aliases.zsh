@@ -6,6 +6,8 @@ alias v='nvim'
 alias vi='nvim'
 alias oc="opencode"
 alias occ="opencode -c"
+alias ccskip="claude --dangerously-skip-permissions"
+alias cccont="claude --dangerously-skip-permissions --continue"
 
 _persist__commit_and_push() {
   local repo_dir="$1"
