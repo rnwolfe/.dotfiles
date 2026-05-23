@@ -1,6 +1,13 @@
 # Managed by chezmoi
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
 setopt HIST_IGNORE_ALL_DUPS
 setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+bindkey -e
 export EDITOR="${EDITOR:-nvim}"
 export PAGER="${PAGER:-less}"
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/go/bin:$PATH"
