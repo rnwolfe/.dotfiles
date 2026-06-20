@@ -23,81 +23,50 @@ _persist__commit_and_push() {
   fi
 }
 
-_persist__repo_dir() {
-  if [[ "${1:-}" == "--work" ]]; then
-    echo "$HOME/.local/share/chezmoi-work"
-  else
-    echo "$HOME/.local/share/chezmoi"
-  fi
-}
-
-_persist__apply() {
-  if [[ "${1:-}" == "--work" ]]; then
-    chezmoi -S "$HOME/.local/share/chezmoi-work" apply
-  else
-    chezmoi apply
-  fi
-}
-
 persist-alias() {
-  local target="personal"
-  if [[ "${1:-}" == "--work" ]]; then
-    target="work"
-    shift
-  fi
   if [[ "$#" -lt 2 ]]; then
-    echo "usage: persist-alias [--work] name value..."
+    echo "usage: persist-alias name value..."
     return 1
   fi
 
   local name="$1"
   shift
   local value="$*"
-  local repo_dir="$(_persist__repo_dir "$([[ "$target" == "work" ]] && echo --work)")"
+  local repo_dir="$HOME/.local/share/chezmoi"
   local aliases_file="$repo_dir/dot_config/zsh/20-aliases.zsh"
 
   printf "alias %s='%s'\n" "$name" "$value" >> "$aliases_file"
-  _persist__apply "$([[ "$target" == "work" ]] && echo --work)"
+  chezmoi apply
   _persist__commit_and_push "$repo_dir" "chore: add alias $name"
 }
 
 persist-env() {
-  local target="personal"
-  if [[ "${1:-}" == "--work" ]]; then
-    target="work"
-    shift
-  fi
   if [[ "$#" -lt 1 ]]; then
-    echo "usage: persist-env [--work] KEY=value..."
+    echo "usage: persist-env KEY=value..."
     return 1
   fi
 
   local kv="$*"
-  local repo_dir="$(_persist__repo_dir "$([[ "$target" == "work" ]] && echo --work)")"
+  local repo_dir="$HOME/.local/share/chezmoi"
   local env_file="$repo_dir/dot_config/zsh/00-env.zsh"
 
   printf "export %s\n" "$kv" >> "$env_file"
-  _persist__apply "$([[ "$target" == "work" ]] && echo --work)"
+  chezmoi apply
   _persist__commit_and_push "$repo_dir" "chore: add env ${kv%%=*}"
 }
 
 persist-path() {
-  local target="personal"
-  if [[ "${1:-}" == "--work" ]]; then
-    target="work"
-    shift
-  fi
   if [[ "$#" -lt 1 ]]; then
-    echo "usage: persist-path [--work] /path/to/bin"
+    echo "usage: persist-path /path/to/bin"
     return 1
   fi
 
   local path_entry="$1"
-  local repo_dir="$(_persist__repo_dir "$([[ "$target" == "work" ]] && echo --work)")"
+  local repo_dir="$HOME/.local/share/chezmoi"
   local env_file="$repo_dir/dot_config/zsh/00-env.zsh"
 
   printf 'export PATH="%s:$PATH"\n' "$path_entry" >> "$env_file"
-  _persist__apply "$([[ "$target" == "work" ]] && echo --work)"
+  chezmoi apply
   _persist__commit_and_push "$repo_dir" "chore: add path $path_entry"
 }
 alias cb='clawdbot'
