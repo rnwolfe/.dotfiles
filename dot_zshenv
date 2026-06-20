@@ -1,0 +1,12 @@
+# Managed by chezmoi
+# Sourced by EVERY zsh invocation (interactive, non-interactive, and scripts) —
+# unlike .zshrc, which only runs for interactive shells.
+#
+# Put mise's shims directory on PATH here so non-interactive shells can see
+# mise-managed tools. In particular, Claude Code's Bash tool runs a
+# non-interactive zsh that never sources .zshrc (where `mise activate` lives),
+# so without this it cannot find bat/eza/fd or any future mise tool. Appended
+# (not prepended) so interactive `mise activate` ordering still wins.
+if [ -d "$HOME/.local/share/mise/shims" ]; then
+  export PATH="$PATH:$HOME/.local/share/mise/shims"
+fi

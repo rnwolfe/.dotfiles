@@ -1,5 +1,32 @@
 # Managed by chezmoi
-alias ll='ls -lah'
+# Modern tool replacements — guarded so a fresh machine (tools not yet
+# installed by mise) still has working ls/cat.
+if command -v eza >/dev/null; then
+  alias ls='eza --group-directories-first'
+  alias ll='eza -lah --git --group-directories-first'
+  alias la='eza -a --group-directories-first'
+  alias lt='eza --tree --level=2'
+  alias tree='eza --tree'
+else
+  alias ll='ls -lah'
+fi
+command -v bat >/dev/null && alias cat='bat --paging=never'
+
+# mytools — remind me which power tools are installed and what they replace.
+mytools() {
+  command cat <<'EOF'
+power tools (→ what they replace):
+  eza    → ls       aliased: ls, ll, la, lt, tree
+  bat    → cat       aliased: cat (syntax highlight, no paging)
+  fd     → find      use `fd PATTERN`; also powers fzf Ctrl-T
+  rg     → grep      ripgrep
+  fzf    →           Ctrl-T files · Ctrl-R history · <Tab> completion
+  zoxide → cd        use `z DIR` to jump
+  glow   →           render markdown in the terminal
+  lazygit→           git TUI (`lazygit`)
+EOF
+}
+
 alias gs='git status'
 alias gd='git diff'
 alias gl='git log --oneline --graph --decorate --all'
