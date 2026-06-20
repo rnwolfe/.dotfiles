@@ -9,6 +9,9 @@ k9s = "latest"
 bun = "latest"
 tree-sitter = "latest"
 uv = "latest"
+bat = "latest"
+eza = "latest"
+fd = "latest"
 
 # Add more as needed, e.g.
 # python = "3.12"

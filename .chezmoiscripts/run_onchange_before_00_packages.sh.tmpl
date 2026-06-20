@@ -20,7 +20,7 @@ if [[ "$os" == "linux" ]]; then
       zsh jq ripgrep fzf tmux \
       build-essential pkg-config \
       libssl-dev libcurl4-openssl-dev libxml2-dev \
-      xclip fd-find \
+      xclip fd-find nvtop \
       zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
       libncursesw5-dev xz-utils tk-dev libxmlsec1-dev libffi-dev liblzma-dev
 
@@ -137,7 +137,7 @@ elif [[ "$os" == "darwin" ]]; then
   brew install \
     git zsh jq ripgrep fzf fd \
     lastpass-cli gh pyenv \
-    neovim lazygit gdu bottom ngrok
+    neovim lazygit gdu bottom ngrok nvtop
 else
   echo "Unsupported OS: $os"
 fi
