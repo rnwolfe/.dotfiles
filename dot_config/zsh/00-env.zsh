@@ -26,7 +26,7 @@ export OPENCODE_DISABLE_FILETIME_CHECK=true
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-command -v pyenv >/dev/null && eval "$(pyenv init -)"
+command -v pyenv >/dev/null && eval "$(pyenv init - --no-rehash)"
 
 # zoxide (smart `z` command; `zi` interactive is shadowed by zinit's zi=zinit alias)
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
