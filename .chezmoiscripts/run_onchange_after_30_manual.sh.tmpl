@@ -6,9 +6,21 @@ set -euo pipefail
 
 # Example (npm):
 if command -v mise >/dev/null 2>&1; then
-  mise exec -- npm install -g @openai/codex @google/gemini-cli
+  mise exec -- npm install -g @openai/codex
 elif command -v npm >/dev/null 2>&1; then
-  npm install -g @openai/codex @google/gemini-cli
+  npm install -g @openai/codex
+fi
+
+# Antigravity CLI (`agy`). Install only when missing: the upstream installer's
+# post-step appends a redundant `~/.local/bin` PATH export to every shell
+# profile (that dir is already on PATH via managed dotfiles), so guard on the
+# binary and strip that block afterward to avoid re-polluting profiles — and
+# creating chezmoi drift — on every apply.
+if [ ! -x "$HOME/.local/bin/agy" ]; then
+  curl -fsSL https://antigravity.google/cli/install.sh | bash
+  for prof in "$HOME/.zshrc" "$HOME/.zprofile" "$HOME/.profile" "$HOME/.bashrc" "$HOME/.config/fish/config.fish"; do
+    [ -f "$prof" ] && perl -0pi -e 's/\n*# Added by Antigravity CLI installer\n[^\n]*\n?\z//' "$prof"
+  done
 fi
 
 # Example (go):
