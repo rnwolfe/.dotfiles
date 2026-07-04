@@ -10,10 +10,7 @@ setopt HIST_VERIFY
 bindkey -e
 export EDITOR="${EDITOR:-nvim}"
 export PAGER="${PAGER:-less}"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/go/bin:$PATH"
-
-# opencode
-export OPENCODE_DISABLE_FILETIME_CHECK=true
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
 
 # API keys loaded from ~/ key files
 [[ -f "$HOME/.gemini_api_key" ]]     && export GEMINI_API_KEY="$(cat "$HOME/.gemini_api_key")"     GOOGLE_API_KEY="$GEMINI_API_KEY"

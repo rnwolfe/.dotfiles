@@ -39,8 +39,6 @@ alias ta='tmux -CC attach -t'
 alias tn='tmux -CC new-session -s'
 alias v='nvim'
 alias vi='nvim'
-alias oc="opencode"
-alias occ="opencode -c"
 alias ccskip="claude --dangerously-skip-permissions"
 alias cccont="claude --dangerously-skip-permissions --continue"
 
