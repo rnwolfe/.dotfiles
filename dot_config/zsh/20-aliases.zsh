@@ -104,3 +104,14 @@ persist-path() {
 }
 alias cb='clawdbot'
 alias s='source ~/.zshrc'
+
+# bird — X/Twitter CLI. bird 0.8.0 doesn't read its own config.json5 for auth,
+# so route through bird-auth, which injects AUTH_TOKEN/CT0 from config.json5.
+# `command bird` (the bare binary) still works if you ever want to bypass this.
+bird() {
+  if [[ -x "$HOME/.local/bin/bird-auth" ]]; then
+    "$HOME/.local/bin/bird-auth" "$@"
+  else
+    command bird "$@"
+  fi
+}
