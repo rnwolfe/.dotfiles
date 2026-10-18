@@ -18,7 +18,6 @@ export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
 [[ -f "$HOME/.openai_api_key" ]]     && export OPENAI_API_KEY="$(cat "$HOME/.openai_api_key")"
 [[ -f "$HOME/.openrouter_api_key" ]] && export OPENROUTER_API_KEY="$(cat "$HOME/.openrouter_api_key")"
 [[ -f "$HOME/.ai_gateway_api_key" ]] && export AI_GATEWAY_API_KEY="$(cat "$HOME/.ai_gateway_api_key")"
-[[ -f "$HOME/.honcho_api_key" ]] && export HONCHO_API_KEY="$(cat "$HOME/.honcho_api_key")"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
